@@ -229,6 +229,38 @@
   transform: translateY(-1px);
 }
 
+.difficulty-picker {
+  max-width: 700px;
+  margin: 0 auto 30px;
+  text-align: center;
+}
+
+.difficulty-options {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.difficulty-button {
+  background: #1b1c22;
+  color: #fff;
+  border: 1px solid #3a3d45;
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.difficulty-button.active {
+  background: linear-gradient(135deg, #e94b35, #9389ff);
+  border-color: transparent;
+  box-shadow: 0 0 18px rgba(147, 137, 255, 0.5);
+}
+
 @media (max-width: 650px) {
   .header {
     padding: 0 5%;

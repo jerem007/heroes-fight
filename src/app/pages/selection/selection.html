@@ -73,15 +73,50 @@
         </div>
       </div>
 
-      <a
-  [routerLink]="['/fight', selectedHero()?.id, randomHero()?.id]"
-  class="fight-button"
->
-  COMMENCER LE COMBAT
-</a>
+      <button
+        type="button"
+        class="fight-button"
+        [disabled]="!selectedHero() || !randomHero()"
+        (click)="goToBattle()"
+      >
+        COMMENCER LE COMBAT
+      </button>
 
     </footer>
 
   }
+
+  <section class="difficulty-picker">
+    <p class="eyebrow">NIVEAU DE DIFFICULTÉ</p>
+
+    <div class="difficulty-options">
+      <button
+        type="button"
+        class="difficulty-button"
+        [class.active]="difficulty() === 'easy'"
+        (click)="setDifficulty('easy')"
+      >
+        FACILE
+      </button>
+
+      <button
+        type="button"
+        class="difficulty-button"
+        [class.active]="difficulty() === 'normal'"
+        (click)="setDifficulty('normal')"
+      >
+        NORMAL
+      </button>
+
+      <button
+        type="button"
+        class="difficulty-button"
+        [class.active]="difficulty() === 'hard'"
+        (click)="setDifficulty('hard')"
+      >
+        DIFFICILE
+      </button>
+    </div>
+  </section>
 
 </main>

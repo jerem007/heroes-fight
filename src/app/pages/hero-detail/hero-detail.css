@@ -1,0 +1,121 @@
+.detail-page {
+  min-height: calc(100vh - 90px);
+  display: grid;
+  place-items: center;
+  padding: 40px 24px;
+  background: #101114;
+  color: #fff;
+}
+
+.hero-detail-card {
+  width: min(1000px, 100%);
+  display: grid;
+  grid-template-columns: minmax(260px, 360px) 1fr;
+  gap: 28px;
+  background: linear-gradient(180deg, rgba(24, 26, 30, 0.96), rgba(16, 17, 20, 0.98));
+  border: 1px solid rgba(147, 137, 255, 0.4);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+.hero-visual {
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at top, rgba(147, 137, 255, 0.2), rgba(16, 17, 20, 0));
+  padding: 24px;
+}
+
+.hero-visual img {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.35);
+}
+
+.hero-content {
+  padding: 28px 28px 28px 0;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: #ffb84d;
+  letter-spacing: 0.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+.hero-content h1 {
+  margin: 0 0 24px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+}
+
+.stat-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+
+.stat-item span {
+  display: block;
+  color: #a8a8b5;
+  font-size: 0.7rem;
+  letter-spacing: 0.12rem;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.stat-item strong {
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+.actions {
+  margin-top: 28px;
+}
+
+.primary-button {
+  display: inline-block;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, #e63946, #ff7c55);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: 800;
+  letter-spacing: 0.12rem;
+  text-transform: uppercase;
+}
+
+.state-card {
+  width: min(540px, 100%);
+  background: rgba(30, 32, 38, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 28px;
+  text-align: center;
+}
+
+.state-card.error {
+  border-color: rgba(230, 57, 70, 0.3);
+}
+
+@media (max-width: 760px) {
+  .hero-detail-card {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-content {
+    padding: 0 18px 20px;
+  }
+}

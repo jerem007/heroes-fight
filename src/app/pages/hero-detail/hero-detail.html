@@ -1,0 +1,37 @@
+<main class="detail-page">
+  @if (loading()) {
+    <section class="state-card">
+      <p>Chargement du héros...</p>
+    </section>
+  } @else if (hero(); as currentHero) {
+    <article class="hero-detail-card">
+      <div class="hero-visual">
+        <img [src]="currentHero.images.lg" [alt]="currentHero.name" />
+      </div>
+
+      <div class="hero-content">
+        <p class="eyebrow">SUPER-HÉROS</p>
+        <h1>{{ currentHero.name }}</h1>
+
+        <div class="stat-grid">
+          @for (entry of powerstats(); track entry[0]) {
+            <div class="stat-item">
+              <span>{{ entry[0].toUpperCase() }}</span>
+              <strong>{{ entry[1] }}</strong>
+            </div>
+          }
+        </div>
+
+        <div class="actions">
+          <a routerLink="/" class="primary-button">Retour à l'accueil</a>
+        </div>
+      </div>
+    </article>
+  } @else {
+    <section class="state-card error">
+      <h2>Héros introuvable</h2>
+      <p>Le personnage demandé n’existe pas ou n’est plus disponible.</p>
+      <a routerLink="/" class="primary-button">Retour à l'accueil</a>
+    </section>
+  }
+</main>
