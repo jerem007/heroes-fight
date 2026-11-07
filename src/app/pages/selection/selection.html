@@ -1,0 +1,87 @@
+<main class="selection-page">
+
+  <section class="intro">
+    <p class="eyebrow">THE ARENA IS WAITING</p>
+    <h1>CHOISIS TON <span>COMBATTANT</span></h1>
+    <p>Sélectionne ton super-héros et prépare-toi au combat.</p>
+  </section>
+
+  @if (loading()) {
+    <p class="loading">Chargement des combattants...</p>
+  }
+
+  <section class="heroes-container">
+
+    <div class="heroes-grid">
+
+      @for (hero of heroes(); track hero.id) {
+
+        <article
+          class="hero-card"
+          [class.selected]="selectedHero()?.id === hero.id"
+          (click)="selectHero(hero.id)"
+        >
+
+          <img
+            [src]="hero.images.lg"
+            [alt]="hero.name"
+          >
+
+          <div class="hero-info">
+            <h2>{{ hero.name }}</h2>
+
+            <div class="hero-stats">
+              <div>
+                <span>FORCE</span>
+                <strong>{{ hero.powerstats.strength }}</strong>
+              </div>
+
+              <div>
+                <span>VITESSE</span>
+                <strong>{{ hero.powerstats.speed }}</strong>
+              </div>
+
+              <div>
+                <span>COMBAT</span>
+                <strong>{{ hero.powerstats.combat }}</strong>
+              </div>
+            </div>
+          </div>
+
+          @if (selectedHero()?.id === hero.id) {
+            <span class="selected-label">SÉLECTIONNÉ</span>
+          }
+
+        </article>
+
+      }
+
+    </div>
+
+  </section>
+
+  @if (selectedHero()) {
+
+    <footer class="selection-footer">
+
+      <div class="selected-character">
+        <img [src]="selectedHero()!.images.lg" [alt]="selectedHero()!.name">
+
+        <div>
+          <span>TON COMBATTANT</span>
+          <h2>{{ selectedHero()!.name }}</h2>
+        </div>
+      </div>
+
+      <a
+  [routerLink]="['/fight', selectedHero()?.id, randomHero()?.id]"
+  class="fight-button"
+>
+  COMMENCER LE COMBAT
+</a>
+
+    </footer>
+
+  }
+
+</main>

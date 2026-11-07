@@ -1,0 +1,122 @@
+/* PAGE PRINCIPALE */
+main {
+    min-height: 100vh;
+    padding: 50px 6%;
+    background: #151515;
+    color: #f5f5f5;
+}
+
+/* INTRODUCTION */
+section {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+section h1 {
+    font-family: 'Arial Black', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+section h1::after {
+    content: " FIGHT";
+    color: #e63946;
+}
+
+section p {
+    color: #aaa;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+/* BARRE DE RECHERCHE */
+form {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    max-width: 650px;
+    margin: 0 auto 55px;
+}
+
+form input {
+    flex: 1;
+    padding: 15px 20px;
+    background: #222;
+    border: 1px solid #444;
+    border-radius: 4px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+form input::placeholder {
+    color: #777;
+}
+
+form input:focus {
+    border-color: #e63946;
+    box-shadow: 0 0 10px rgba(230, 57, 70, 0.2);
+}
+
+form button {
+    padding: 15px 25px;
+    background: #e63946;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+form button:hover {
+    background: #b82030;
+    transform: scale(1.04);
+}
+
+/* LISTE DES HEROS */
+.heroes-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+}
+
+.heroes-list li {
+    min-width: 0;
+    transition: transform 0.3s ease;
+}
+
+.heroes-list li:hover {
+    transform: translateY(-8px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    main {
+        padding: 35px 5%;
+    }
+
+    form {
+        flex-direction: column;
+    }
+
+    form button {
+        width: 100%;
+    }
+
+    .heroes-list {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+    }
+}

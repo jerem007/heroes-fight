@@ -1,0 +1,284 @@
+
+/* ==============================
+   PAGE COMBAT
+============================== */
+
+.fight-page {
+  min-height: 100vh;
+  padding: 30px 7%;
+  background: #101114;
+  color: #f5f5f5;
+  font-family: Arial, sans-serif;
+}
+
+/* HEADER */
+
+.fight-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #292a30;
+  padding-bottom: 22px;
+}
+
+.fight-header a {
+  color: #f5f5f5;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.fight-header span {
+  color: #e94b35;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+/* INTRO */
+
+.fight-intro {
+  text-align: center;
+  margin: 65px 0 55px;
+}
+
+.eyebrow {
+  color: #e94b35;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 4px;
+}
+
+.fight-intro h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 900;
+  margin: 15px 0;
+  letter-spacing: -2px;
+}
+
+.fight-intro h1 span {
+  color: #e94b35;
+}
+
+.fight-intro p:last-child {
+  color: #999ba5;
+  font-size: 1rem;
+}
+
+/* ARENA */
+
+.arena {
+  max-width: 1250px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 35px;
+}
+
+/* FIGHTERS */
+
+.fighter {
+  position: relative;
+  background: #191a20;
+  border: 1px solid #30313a;
+  border-radius: 14px;
+  padding: 25px;
+  text-align: center;
+  overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.fighter:hover {
+  transform: translateY(-6px);
+  border-color: #e94b35;
+}
+
+.fighter-left {
+  border-top: 3px solid #e94b35;
+}
+
+.fighter-right {
+  border-top: 3px solid #7770d9;
+}
+
+.fighter-label {
+  display: inline-block;
+  color: #e94b35;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+
+.fighter-right .fighter-label {
+  color: #9389ff;
+}
+
+/* IMAGES */
+
+.fighter-image {
+  width: 100%;
+  height: 330px;
+  object-fit: contain;
+  object-position: center;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.5));
+}
+
+.fighter h2 {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  font-weight: 900;
+  margin: 10px 0 25px;
+}
+
+/* STATS */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 13px;
+  background: #24252d;
+  border-radius: 8px;
+  border: 1px solid #34353e;
+}
+
+.stat span {
+  color: #92949e;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.stat strong {
+  color: #f5f5f5;
+  font-size: 1.4rem;
+}
+
+/* VS */
+
+.versus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background: #e94b35;
+  box-shadow: 0 0 30px rgba(233, 75, 53, 0.3);
+  transform: rotate(-8deg);
+}
+
+.versus span {
+  font-size: 1.8rem;
+  font-weight: 1000;
+  font-style: italic;
+  color: white;
+}
+
+/* FOOTER */
+
+.fight-footer {
+  text-align: center;
+  margin: 55px auto 30px;
+}
+
+.fight-footer p {
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 4px;
+  margin-bottom: 25px;
+}
+
+.fight-button {
+  display: inline-block;
+  padding: 17px 40px;
+  background: #e94b35;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.fight-button:hover:not(:disabled) {
+  background: #ff6249;
+  transform: scale(1.04);
+}
+
+.fight-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* LOADING */
+
+.loading {
+  text-align: center;
+  color: #e94b35;
+  font-weight: 800;
+  margin: 60px 0;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 850px) {
+  .arena {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .versus {
+    margin: auto;
+    width: 60px;
+    height: 60px;
+  }
+
+  .fighter-image {
+    height: 280px;
+  }
+
+  .fight-intro {
+    margin: 45px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .fight-page {
+    padding: 20px 5%;
+  }
+
+  .fight-header a {
+    font-size: 1.1rem;
+  }
+
+  .fight-header span {
+    font-size: 0.65rem;
+  }
+
+  .fighter {
+    padding: 18px;
+  }
+
+  .fighter-image {
+    height: 230px;
+  }
+
+  .fight-button {
+    padding: 15px 22px;
+    font-size: 0.75rem;
+  }
+}

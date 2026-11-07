@@ -1,0 +1,183 @@
+
+<main class="battle-page">
+  <section class="battle-intro">
+    <p>THE ARENA IS WAITING</p>
+    <h1>LET THE FIGHT <span>BEGIN</span></h1>
+  </section>
+
+  @if (myHero() && enemyHero()) {
+
+    <section class="battle-arena">
+
+      <!-- MON COMBATTANT -->
+
+      <article
+        class="fighter player"
+        [class.attacking]="playerAttacking()"
+      >
+
+        <span class="fighter-label">PLAYER 1</span>
+
+        <div class="health-info">
+          <span>{{ myHero()!.name }}</span>
+          <strong>{{ myLife() }} HP</strong>
+        </div>
+
+        <div class="health-bar">
+          <div
+            class="health-fill"
+            [style.width.%]="myLife()"
+          ></div>
+        </div>
+
+        <img
+          [src]="myHero()!.images.lg"
+          [alt]="myHero()!.name"
+          class="fighter-image"
+        >
+
+        <h2>{{ myHero()!.name }}</h2>
+
+        <!-- STATISTIQUES -->
+
+        <div class="fighter-stats">
+          <div class="stat">
+            <span>INTELLIGENCE</span>
+            <strong>{{ myHero()!.powerstats.intelligence }}</strong>
+          </div>
+
+          <div class="stat">
+            <span>FORCE</span>
+            <strong>{{ myHero()!.powerstats.strength }}</strong>
+          </div>
+
+          <div class="stat">
+            <span>VITESSE</span>
+            <strong>{{ myHero()!.powerstats.speed }}</strong>
+          </div>
+
+          <div class="stat">
+            <span>RÉSISTANCE</span>
+            <strong>{{ myHero()!.powerstats.durability }}</strong>
+          </div>
+
+          <div class="stat">
+            <span>POUVOIR</span>
+            <strong>{{ myHero()!.powerstats.power }}</strong>
+          </div>
+
+          <div class="stat">
+            <span>COMBAT</span>
+            <strong>{{ myHero()!.powerstats.combat }}</strong>
+          </div>
+        </div>
+
+      </article>
+
+      <!-- VS -->
+
+      <div class="versus">
+        <span>VS</span>
+      </div>
+
+      <!-- ADVERSAIRE -->
+
+      <article
+        class="fighter enemy"
+        [class.attacking]="enemyAttacking()"
+      >
+
+        <span class="fighter-label">PLAYER 2</span>
+
+        <div class="health-info">
+          <span>{{ enemyHero()!.name }}</span>
+          <strong>{{ enemyLife() }} HP</strong>
+        </div>
+
+        <div class="health-bar">
+          <div
+            class="health-fill"
+            [style.width.%]="enemyLife()"
+          ></div>
+        </div>
+
+        <img
+          [src]="enemyHero()!.images.lg"
+          [alt]="enemyHero()!.name"
+          class="fighter-image"
+        >
+
+        <h2>{{ enemyHero()!.name }}</h2>
+
+        <!-- STATISTIQUES -->
+
+        <div class="fighter-stats">
+          <div class="stat">
+            <span>INTELLIGENCE</span>
+            <strong>{{ enemyHero()!.powerstats.intelligence }}</strong>
+          </div>
+
+          <div class="stat">
+            <span>FORCE</span>
+            <strong>{{ enemyHero()!.powerstats.strength }}</strong>
+          </div>
+
+          <div class="stat">
+            <span>VITESSE</span>
+            <strong>{{ enemyHero()!.powerstats.speed }}</strong>
+          </div>
+
+          <div class="stat">
+            <span>RÉSISTANCE</span>
+            <strong>{{ enemyHero()!.powerstats.durability }}</strong>
+          </div>
+
+          <div class="stat">
+            <span>POUVOIR</span>
+            <strong>{{ enemyHero()!.powerstats.power }}</strong>
+          </div>
+
+          <div class="stat">
+            <span>COMBAT</span>
+            <strong>{{ enemyHero()!.powerstats.combat }}</strong>
+          </div>
+        </div>
+
+      </article>
+
+    </section>
+
+    <!-- COMMANDES -->
+
+    <section class="battle-controls">
+
+      @if (winner(); as result) {
+
+        <div class="victory">
+          <p>FIN DU COMBAT</p>
+          <h2>{{ result }} REMPORTE LA VICTOIRE !</h2>
+        </div>
+
+      } @else {
+
+        <p>À TON TOUR DE JOUER !</p>
+
+        <button
+          class="attack-button"
+          (click)="attack()"
+          [disabled]="busy()"
+        >
+          {{ busy() ? 'COMBAT EN COURS...' : 'ATTAQUER !' }}
+        </button>
+
+      }
+
+    </section>
+
+  } @else {
+
+    <p class="loading">CHARGEMENT DES COMBATTANTS...</p>
+
+  }
+
+</main>

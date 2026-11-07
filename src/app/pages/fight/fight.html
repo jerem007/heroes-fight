@@ -1,0 +1,110 @@
+
+<main class="fight-page">
+  <section class="fight-intro">
+    <p class="eyebrow">THE BATTLE BEGINS</p>
+    <h1>PRÉPARE-TOI AU <span>COMBAT</span></h1>
+    <p>Deux combattants. Un seul vainqueur.</p>
+  </section>
+
+  @if (myHero() && randomHero()) {
+
+    <section class="arena">
+
+      <!-- MON HÉROS -->
+      <article class="fighter fighter-left">
+
+        <div class="fighter-label">TON COMBATTANT</div>
+
+        <img
+          class="fighter-image"
+          [src]="myHero()!.images.lg"
+          [alt]="myHero()!.name"
+        >
+
+        <h2>{{ myHero()!.name }}</h2>
+
+        <div class="stats">
+
+          <div class="stat">
+            <span>INTELLIGENCE</span>
+            <strong>{{ myHero()!.powerstats.intelligence }}</strong>
+          </div>
+
+          <div class="stat">
+            <span>FORCE</span>
+            <strong>{{ myHero()!.powerstats.strength }}</strong>
+          </div>
+
+          <div class="stat">
+            <span>VITESSE</span>
+            <strong>{{ myHero()!.powerstats.speed }}</strong>
+          </div>
+
+          <div class="stat">
+            <span>COMBAT</span>
+            <strong>{{ myHero()!.powerstats.combat }}</strong>
+          </div>
+
+        </div>
+
+      </article>
+
+      <!-- VS -->
+      <div class="versus">
+        <span>VS</span>
+      </div>
+
+      <!-- ADVERSAIRE -->
+      <article class="fighter fighter-right">
+
+        <div class="fighter-label">ADVERSAIRE</div>
+
+        <img
+          class="fighter-image"
+          [src]="randomHero()!.images.lg"
+          [alt]="randomHero()!.name"
+        >
+
+        <h2>{{ randomHero()!.name }}</h2>
+
+        <div class="stats">
+
+          <div class="stat">
+            <span>INTELLIGENCE</span>
+            <strong>{{ randomHero()!.powerstats.intelligence }}</strong>
+          </div>
+
+          <div class="stat">
+            <span>FORCE</span>
+            <strong>{{ randomHero()!.powerstats.strength }}</strong>
+          </div>
+
+          <div class="stat">
+            <span>VITESSE</span>
+            <strong>{{ randomHero()!.powerstats.speed }}</strong>
+          </div>
+
+          <div class="stat">
+            <span>COMBAT</span>
+            <strong>{{ randomHero()!.powerstats.combat }}</strong>
+          </div>
+
+        </div>
+
+      </article>
+
+    </section>
+
+    <footer class="fight-footer">
+      <p>QUE LE MEILLEUR GAGNE !</p>
+
+      <a [routerLink]="['/battle', myHero()?.id, randomHero()?.id]" class="fight-button" disabled>
+        BIENTÔT : LANCER LE COMBAT
+    </a>
+    </footer>
+
+  } @else {
+    <p class="loading">Préparation des combattants...</p>
+  }
+
+</main>

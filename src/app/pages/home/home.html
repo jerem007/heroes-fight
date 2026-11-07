@@ -1,0 +1,41 @@
+
+<main>
+
+  <section>
+    <h1>Bienvenue sur History Fight</h1>
+    <p>Choisissez votre combattant et entrez en bataille !</p>
+  </section>
+
+  <form (submit)="onSubmit($event)">
+
+    <input
+      type="text"
+      [formField]="form.search"
+      placeholder="Rechercher un super-héros..."
+    />
+
+    <button type="submit">
+      Rechercher
+    </button>
+
+  </form>
+
+  @if (loading()) {
+    <p>Chargement des super-héros...</p>
+  } @else {
+
+    <ul class="heroes-list">
+
+      @for (hero of heroes(); track hero.id) {
+        <li>
+          <app-card [hero]="hero" />
+        </li>
+      } @empty {
+        <li>Aucun super-héros trouvé.</li>
+      }
+
+    </ul>
+
+  }
+
+</main>
