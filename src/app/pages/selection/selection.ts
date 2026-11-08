@@ -1,51 +1,84 @@
-import { Component, inject, signal } from '@angular/core';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { finalize, map, switchMap, tap } from 'rxjs';
-import { SuperHero } from '../../services/super-hero';
+import { Component, computed, effect, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { finalize } from 'rxjs';
 import { Router } from '@angular/router';
+import { form, FormField } from '@angular/forms/signals';
+import { SuperHero } from '../../services/super-hero';
+import { SelectionStateService } from '../../services/selection-state';
 
 type Difficulty = 'easy' | 'normal' | 'hard';
 
 @Component({
   selector: 'app-selection',
+  imports: [FormField],
   templateUrl: './selection.html',
   styleUrl: './selection.css',
 })
 export class Selection {
-
   heroService = inject(SuperHero);
   private router = inject(Router);
+  private selectionState = inject(SelectionStateService);
 
   heroId = signal<number>(1);
   difficulty = signal<Difficulty>('normal');
-
   loading = signal(true);
+
+  formValues = signal({ search: '' });
+  form = form(this.formValues);
+  search = signal('');
+  visibleCount = signal(12);
 
   randomHero = toSignal(
     this.heroService.getRandomSuperHero(),
     { initialValue: null }
   );
 
-  heroes = toSignal(
+  allHeroes = toSignal(
     this.heroService.getSuperHeroes().pipe(
-      map(heroes => heroes.slice(0, 10)),
-      finalize(() => this.loading.set(false)),
-      tap(() => this.loading.set(false))
+      finalize(() => this.loading.set(false))
     ),
     { initialValue: [] }
   );
 
-  selectedHero = toSignal(
-    toObservable(this.heroId).pipe(
-      tap(hero => console.log('Héros récupéré :', hero)),
-      switchMap(id => this.heroService.getSuperHero(id))
-    ),
-    { initialValue: null }
+  filteredHeroes = computed(() =>
+    this.allHeroes().filter(hero =>
+      hero.name.toLowerCase().includes(this.search().toLowerCase())
+    )
   );
 
-  selectHero(id: number) {
-    console.log('ID cliqué :', id);
+  heroes = computed(() => this.filteredHeroes().slice(0, this.visibleCount()));
+
+  readonly selectedHero = computed(() => this.selectionState.selectedHero());
+
+  constructor() {
+    effect(() => {
+      const hero = this.randomHero();
+      if (hero) {
+        this.selectionState.randomHero.set(hero);
+      }
+    });
+
+    effect(() => {
+      const level = this.difficulty();
+      this.selectionState.difficulty.set(level);
+    });
+  }
+
+  onSubmit(event: Event): void {
+    event.preventDefault();
+    this.search.set(this.formValues().search.trim());
+    this.visibleCount.set(12);
+  }
+
+  showMore(): void {
+    this.visibleCount.update(value => value + 12);
+  }
+
+  selectHero(id: number): void {
     this.heroId.set(id);
+    this.heroService.getSuperHero(id).subscribe(hero => {
+      this.selectionState.selectedHero.set(hero);
+    });
   }
 
   setDifficulty(level: Difficulty): void {
@@ -53,19 +86,17 @@ export class Selection {
   }
 
   goToBattle(): void {
-    console.log('[Selection] selectedHero', this.selectedHero());
-    console.log('[Selection] randomHero', this.randomHero());
-    console.log('[Selection] can navigate', !!this.selectedHero() && !!this.randomHero());
+    const hero = this.selectedHero();
+    const enemy = this.selectionState.randomHero();
 
-    if (!this.selectedHero() || !this.randomHero()) {
-      console.warn('[Selection] Impossible de démarrer le combat : héros manquant');
+    if (!hero || !enemy) {
       return;
     }
 
     this.router.navigate([
       '/battle',
-      this.selectedHero()!.id,
-      this.randomHero()!.id,
+      hero.id,
+      enemy.id,
       this.difficulty()
     ]);
   }

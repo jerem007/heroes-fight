@@ -1,4 +1,3 @@
-
 <main>
 
   <section>
@@ -35,6 +34,14 @@
       }
 
     </ul>
+
+    @if (filteredHeroes().length > heroes().length) {
+      <div class="load-more-wrap">
+        <button type="button" class="load-more" (click)="showMore()">
+          Voir plus
+        </button>
+      </div>
+    }
 
   }
 

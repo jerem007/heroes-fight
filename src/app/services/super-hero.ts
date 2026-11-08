@@ -37,7 +37,7 @@ export class SuperHero {
     return this.http.get<SuperHero>(`https://akabab.github.io/superhero-api/api/id/${id}.json`)
   }
   getRandomSuperHero() : Observable<SuperHero> {
-    const randomId = Math.floor(Math.random() * 9) + 1;
+    const randomId = Math.floor(Math.random() * 731) + 1;
     return this.http.get<SuperHero>(`https://akabab.github.io/superhero-api/api/id/${randomId}.json`);
   }
 }

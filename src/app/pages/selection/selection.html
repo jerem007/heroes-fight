@@ -6,6 +6,16 @@
     <p>Sélectionne ton super-héros et prépare-toi au combat.</p>
   </section>
 
+  <form class="hero-search" (submit)="onSubmit($event)">
+    <input
+      type="text"
+      [formField]="form.search"
+      placeholder="Rechercher un super-héros..."
+    />
+
+    <button type="submit">Rechercher</button>
+  </form>
+
   @if (loading()) {
     <p class="loading">Chargement des combattants...</p>
   }
@@ -58,33 +68,15 @@
 
     </div>
 
-  </section>
-
-  @if (selectedHero()) {
-
-    <footer class="selection-footer">
-
-      <div class="selected-character">
-        <img [src]="selectedHero()!.images.lg" [alt]="selectedHero()!.name">
-
-        <div>
-          <span>TON COMBATTANT</span>
-          <h2>{{ selectedHero()!.name }}</h2>
-        </div>
+    @if (filteredHeroes().length > heroes().length) {
+      <div class="load-more-wrap">
+        <button type="button" class="load-more" (click)="showMore()">
+          Voir plus
+        </button>
       </div>
+    }
 
-      <button
-        type="button"
-        class="fight-button"
-        [disabled]="!selectedHero() || !randomHero()"
-        (click)="goToBattle()"
-      >
-        COMMENCER LE COMBAT
-      </button>
-
-    </footer>
-
-  }
+  </section>
 
   <section class="difficulty-picker">
     <p class="eyebrow">NIVEAU DE DIFFICULTÉ</p>

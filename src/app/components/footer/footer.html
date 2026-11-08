@@ -1,0 +1,32 @@
+<footer class="app-footer">
+  <div class="footer-top">
+    <p>Heroes Fight</p>
+    <nav>
+      <a routerLink="/">Accueil</a>
+      <a routerLink="/selection">Sélection</a>
+      <a routerLink="/rules">Règles</a>
+    </nav>
+  </div>
+
+  @if (selectedHero) {
+    <div class="fight-summary">
+      <div class="selected-character">
+        <img [src]="selectedHero.images.lg" [alt]="selectedHero.name">
+
+        <div>
+          <span>TON COMBATTANT</span>
+          <h2>{{ selectedHero.name }}</h2>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        class="fight-button"
+        [disabled]="!selectedHero || !randomHero"
+        (click)="startBattle.emit()"
+      >
+        COMMENCER LE COMBAT
+      </button>
+    </div>
+  }
+</footer>

@@ -1,0 +1,141 @@
+
+.app-footer {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px 40px;
+
+  background: rgba(16, 17, 20, 0.98);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* Partie supérieure */
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.footer-top p {
+  margin: 0;
+  color: #ff7138;
+  font-size: 1.1rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.footer-top nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.footer-top nav a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.footer-top nav a:hover {
+  color: #ff7138;
+}
+
+/* Partie combattant */
+.fight-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.selected-character {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.selected-character img {
+  width: 60px;
+  height: 65px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #121217;
+  padding: 4px;
+}
+
+.selected-character span {
+  display: block;
+  color: #ff7138;
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.selected-character h2 {
+  margin: 5px 0 0;
+  color: white;
+  font-size: 1rem;
+}
+
+/* Bouton */
+.fight-button {
+  padding: 14px 24px;
+  background: #ff7138;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.fight-button:hover:not(:disabled) {
+  background: #e95320;
+  transform: translateY(-2px);
+}
+
+.fight-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .app-footer {
+    padding: 18px 16px;
+  }
+
+  .footer-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-top nav {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .fight-summary {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .fight-button {
+    width: 100%;
+  }
+}
